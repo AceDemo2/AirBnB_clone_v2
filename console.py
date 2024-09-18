@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
             if len(i) != 2:
                 continue
             name, value = i
-            if '"' in value:
+            if value.startswith('"') and value.endswith('"'):
                 value = value[1:-1].replace('_', ' ').replace('\\"', '"')
             else:
                 try:
