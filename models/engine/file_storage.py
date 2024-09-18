@@ -15,7 +15,7 @@ class FileStorage:
             for i, j in self.__object.items():
                 if cls == j.__class__:
                     obj[i] = j
-            return {obj}
+            return obj
         else:
             return FileStorage.__objects
 
