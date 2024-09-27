@@ -22,6 +22,12 @@ class DBStorage:
     
     def all(self, cls=None):
         """query database"""
+        from models.user import User
+        from models.city import City
+        from models.state import State
+        from models.review import Review
+        from models.amenity import Amenity
+        from models.place import Place
         obj = {}
         classes = [User, City, State, Review, Amenity, Place]
         if not cls:
@@ -32,7 +38,7 @@ class DBStorage:
         else:
             query = self.__session.query(cls).all()
             for j in query:
-                obj[f'{i.__class__.__name__].{i.id}'] = query
+                obj[f'{j.__class__.__name__].{j.id}'] = j
         return obj
 
     def new(self, obj):
@@ -45,7 +51,7 @@ class DBStorage:
 
     def delete(self, obj=None):
         """delete instance"""
-        if not obj:
+        if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):

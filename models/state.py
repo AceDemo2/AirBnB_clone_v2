@@ -8,7 +8,7 @@ from models.city import City
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
-    name = (String(128), nullable=False)
+    name = Column(String(128), nullable=False)
     
     cities = relationship('City', backref='state', cascade='all, delete, delete-orphan')
 
@@ -20,6 +20,6 @@ class State(BaseModel, Base):
         city =[]
         all_cities = storage.all(City)
         for i in all_cities.values():
-            if self.id == city.state_id:
+            if self.id == i.state_id:
                 city.append(i)
         return city
